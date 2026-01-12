@@ -267,10 +267,10 @@
         <h1 class="editable-title" contenteditable="true" id="groupName">The Amazing Weight Loss Squad</h1>
         <p class="subtitle">Click the title to edit the group name!</p>
 
-        <div class="setup-notice" id="setupNotice">
+        <!-- <div class="setup-notice" id="setupNotice">
             <h3>⚠️ Setup Required</h3>
             <p>Scroll down to the "Setup Instructions" section to connect this tracker to a Google Sheet. This will allow everyone to see and update the progress!</p>
-        </div>
+        </div> -->
 
         <div class="thermometer-section">
             <div class="thermometer-container">
@@ -309,7 +309,7 @@
 
         <button class="save-button" id="saveButton">💾 Save Progress</button>
 
-        <div class="instructions">
+        <!-- <div class="instructions">
             <h3>📋 Setup Instructions (One-time setup)</h3>
             <ol>
                 <li>Go to <a href="https://docs.google.com/spreadsheets/" target="_blank">Google Sheets</a> and create a new spreadsheet</li>
@@ -379,33 +379,34 @@ function doPost(e) {
                 <button id="connectButton" style="margin-top: 10px; padding: 10px 20px; background: #2196f3; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: bold;">Connect to Google Sheet</button>
                 <div id="connectionStatus" style="margin-top: 10px; font-weight: bold;"></div>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <script>
+        const GOOGLE_APP_URL = "https://script.google.com/macros/s/AKfycbwIQKcL42aSVGRxD9GBpSWLkmTlJJdeePpwRIivawkUIVTtRCNIeAeuLO9Ne-Y_JXnt/exec"
         const GOAL = 100;
-        let sheetUrl = localStorage.getItem('sheetUrl') || '';
+        const sheetUrl = GOOGLE_APP_URL
 
         if (sheetUrl) {
-            document.getElementById('sheetUrl').value = sheetUrl;
-            document.getElementById('setupNotice').style.display = 'none';
+            // document.getElementById('sheetUrl').value = sheetUrl;
+            // document.getElementById('setupNotice').style.display = 'none';
             loadData();
         }
 
-        document.getElementById('connectButton').addEventListener('click', function() {
-            const url = document.getElementById('sheetUrl').value.trim();
-            if (url) {
-                sheetUrl = url;
-                localStorage.setItem('sheetUrl', url);
-                document.getElementById('connectionStatus').textContent = '✅ Connected! Loading data...';
-                document.getElementById('connectionStatus').style.color = 'green';
-                document.getElementById('setupNotice').style.display = 'none';
-                loadData();
-            } else {
-                document.getElementById('connectionStatus').textContent = '❌ Please enter a valid URL';
-                document.getElementById('connectionStatus').style.color = 'red';
-            }
-        });
+        // document.getElementById('connectButton').addEventListener('click', function() {
+        //     const url = document.getElementById('sheetUrl').value.trim();
+        //     if (url) {
+        //         sheetUrl = url;
+        //         localStorage.setItem('sheetUrl', url);
+        //         document.getElementById('connectionStatus').textContent = '✅ Connected! Loading data...';
+        //         document.getElementById('connectionStatus').style.color = 'green';
+        //         document.getElementById('setupNotice').style.display = 'none';
+        //         loadData();
+        //     } else {
+        //         document.getElementById('connectionStatus').textContent = '❌ Please enter a valid URL';
+        //         document.getElementById('connectionStatus').style.color = 'red';
+        //     }
+        // });
 
         document.getElementById('groupName').addEventListener('blur', function() {
             localStorage.setItem('groupName', this.textContent);
